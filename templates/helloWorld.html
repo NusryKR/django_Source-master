@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Covid-19 Live Update</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/png" href="https://img.icons8.com/ios/50/fa314a/coronavirus--v2.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+</head>
+<style type="text/css">
+    .wrapper {
+        margin-top: 10px;
+    }
+
+    /* Global */
+    html {
+        min-height: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+
+
+    }
+
+    .line-1 {
+        position: relative;
+
+        width: 24em;
+        margin: 0 auto;
+        border-right: 2px solid rgba(255, 255, 255, .75);
+        font-size: 180%;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        transform: translateY(-50%);
+    }
+
+    /* Animation */
+    .anim-typewriter {
+        animation: typewriter 3s steps(44) 1s infinite normal both,
+            blinkTextCursor 500ms steps(44) infinite normal;
+    }
+
+    @keyframes typewriter {
+        from {
+            width: 0;
+        }
+
+        to {
+            width: 5em;
+        }
+    }
+
+    @keyframes blinkTextCursor {
+        from {
+            border-right-color: rgba(255, 255, 255, .75);
+        }
+
+        to {
+            border-right-color: transparent;
+        }
+    }
+</style>
+
+
+<body class="container-fluid"  style="background-color: black; min-height: 100%;" data-spy="scroll"
+    data-target=".fixed-top">
+
+    <h1  style="color: white; text-align: center; font-size: 55px; margin-top: 10px;"><img
+            src="https://hbr.org/resources/images/article_assets/2020/03/Mar20_01_Wikimedia3.jpg" width="120px"
+            height="75px"><span style="color: red; font-weight: bold;">COVID-19 </span><span style="color:white;">WORLD
+            WIDE</span>
+        <h2 class="line-1 anim-typewriter"><span style="color: white;">STATISTICS</span></h2>
+    </h1>
+
+    <form method="POST" class="d-flex justify-content-center align-items-center" action="" style="margin-top: 20px;">
+        {% csrf_token %}
+        <select name="selectedCountry" class="form-control-sm"
+            style="width:450px; height: 50px; border-radius: 10px; font-size: larger;">
+            {% for country in mylist %}
+            <option selected hidden>Choose the country here</option>
+            <option>{{country}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" name="" class=" btn btn-danger"
+            style="margin-left: 50px; height: 50px; width: 100px; border-radius: 10px; font-size: large;">
+    </form>
+
+    <h1 style="margin-top: 30px;color: white; text-align: center; margin-bottom: 20px;">{{selectedCountry}}</h1>
+
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="wrapper" style="height: 100px;width: 200px; background-color:rgb(45, 139, 95);border-radius: 10px;">
+            <h1 style="text-align: center; color: black;">{{new}}</h1>
+            <p style="text-align: center;color: whitesmoke;font-weight: bold; font-size: larger;">New</p>
+        </div>
+        <div class="wrapper"
+            style="height: 100px;width: 200px; background-color: royalblue;border-radius: 10px; margin-left:  20px;">
+            <h1 style="text-align: center;color: black;">{{active}}</h1>
+            <p style="text-align: center;color: whitesmoke;font-weight: bold; font-size: larger;">Active</p>
+        </div>
+        <div class="wrapper"
+            style="height: 100px;width: 200px; background-color: rgb(194, 9, 9);border-radius: 10px; margin-left:  20px ">
+            <h1 style="text-align: center;color: black;">{{deaths}}</h1>
+            <p style="text-align: center; color: whitesmoke;font-weight: bold; font-size: larger;">Deaths</p>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="wrapper" style="height: 100px;width: 200px; background-color: rgb(226, 81, 14);border-radius: 10px">
+            <h1 style="text-align: center;color: black;">{{total}}</h1>
+            <p style="text-align: center;color: whitesmoke;font-weight: bold; font-size: larger;">Total</p>
+        </div>
+        <div class="wrapper"
+            style="height: 100px;width: 200px; background-color:slategray;border-radius: 10px;margin-left: 20px">
+            <h1 style="text-align: center;color: black;">{{critical}}</h1>
+            <p style="text-align: center; color: whitesmoke;font-weight: bold; font-size: larger;">Critical</p>
+        </div>
+        <div class="wrapper"
+            style="height: 100px;width: 200px; background-color: green;border-radius: 10px;margin-left: 20px">
+            <h1 style="text-align: center;color: black;">{{recovered}}</h1>
+            <p style="text-align: center; color: whitesmoke;font-weight: bold; font-size: larger;">Recovered</p>
+        </div>
+    </div>
+<div class="container-fluid" style="margin-top: 50px;">
+    <p class="accordion-item"style="color: white;text-align: center;">Developed by: <a
+            href="https://www.linkedin.com/in/nusrykr/" style="color: red; text-decoration: none; ">Nusry KR </a></p>
+    <p class="accordion-item" style="color: white;text-align: center;margin-top: -20px;">Source: <span style="color: white;">https://rapidapi.com/api-sports/api/covid-193</span></p>
+</div>
+    </body>
+
+</html>
